@@ -21,7 +21,7 @@
                     </div>
                     @endif -->
                     <form action="{{route('register-process')}}" method="POST">
-				        @if (Session::has('success'))
+				  @if (Session::has('success'))
                             <div class="alet alert-success">
                                 {{Session::get('success')}}
                             </div>

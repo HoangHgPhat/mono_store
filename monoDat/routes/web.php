@@ -35,15 +35,19 @@ Route::get('/login2', [CustomerController::class, 'login']);
 Route::post('/register-process', [CustomerController::class, 'registerProcess'])->name('register-process');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('login-process');
 
-
+Route::get('viewPro/{id}', [ProductController::class, 'viewPro']);
 Route::get('/logout', [CustomerController::class, 'logout']);
 Route::get('specs', [CustomerController::class, 'getSpecs']);
 
 // admin
 Route::get('admin', [AdminController::class, 'indexAdmin']);
 Route::get('/loginAdmin', [AdminController::class, 'login']);
+Route::get('/logoutAdmin', [AdminController::class, 'logoutAdmin']);
+
 Route::post('/admin-register-process', [AdminController::class, 'adminregisterProcess'])->name('admin-register-process');
 Route::get('editAd/{id}', [AdminController::class, 'edit']);
+Route::post('updateAd', [AdminController::class, 'updateAd']);
+
 Route::post('/login-admin', [AdminController::class, 'loginProcess'])->name('login-admin');
 Route::get('listad', [AdminController::class, 'listad']);
 Route::get('deleteAd/{id}', [AdminController::class, 'delete']);

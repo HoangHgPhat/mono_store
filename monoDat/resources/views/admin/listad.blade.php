@@ -37,11 +37,9 @@
                                 <td>{{$row->adminID}}</td>
                                 <td>{{$row->adminPass}}</td>
                                 <td>{{$row->adminFullname}}</td>
-                                <td>
-                                    <a href="{{url('editAd/'.$row->adminID)}}" class="btn btn-primary">Edit</a>
+                                <td>                              
                                     <a href="{{url('deleteAd/'.$row->adminID)}}" class="btn btn-danger"
                                         onclick="return confirm('Are you sure?');">Delete</a>
-                                    
                                 </td>
                             </tr>
                             @endforeach

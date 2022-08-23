@@ -29,12 +29,12 @@
                         </div>
                         <div class="md-3">
                             <label for="name" class="form-label">Pass</label>
-                            <input type="text" name="name" class="form-control"
+                            <input type="text" name="pass" class="form-control"
                             value="{{$data->adminPass}}">
                         </div>
                         <div class="md-3">
                             <label for="price" class="form-label">Name</label>
-                            <input type="text" name="price" class="form-control"
+                            <input type="text" name="name" class="form-control"
                             value="{{$data->adminFullname}}">
                         </div>
                         <br>

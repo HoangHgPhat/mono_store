@@ -33,19 +33,17 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $row) 
-                            <tr>
-                                <td>{{$row->producerID}}</td>
-                                <td>{{$row->producerName}}</td>
-                                <td>{{$row->producerCountry}}</td>
-                            
-                                
-                                <td  style="width: 146px;" >
-                                    <a href="{{url('editPro/'.$row->producerID)}}" class="btn btn-primary">Edit</a>
-                                    <a href="{{url('deletePro/'.$row->producerID)}}" class="btn btn-danger"
-                                        onclick="return confirm('Are you sure?');">Delete</a>
-                                    
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{$row->producerID}}</td>
+                                    <td>{{$row->producerName}}</td>
+                                    <td>{{$row->producerCountry}}</td>
+                                    <td  style="width: 146px;" >
+                                        <a href="{{url('editPro/'.$row->producerID)}}" class="btn btn-primary">Edit</a>
+                                        <a href="{{url('deletePro/'.$row->producerID)}}" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure?');">Delete</a>
+                                        
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

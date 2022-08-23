@@ -72,11 +72,12 @@ class AdminController extends Controller
         $producer->producerName = $request->name;
         $producer->producerCountry = $request->country;
         $res = $producer->save();
-        if($res) {
-            return back()->with('success', 'Type of product Added Successfully');
-        } else {
-            return back()->with('fail', 'Something Wrong!');
-        }
+        // if($res) {
+        return back()->with('success', 'Type of product Added Successfully');
+        // } 
+        // else {
+        //     return back()->with('fail', 'Something Wrong!');
+        // }
     }
 
     public function saveCus(Request $request)
@@ -93,8 +94,8 @@ class AdminController extends Controller
 
     public function deleteCus($id)
     {
-        Customer::where('CustomerID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'Customer Deleted Successfully');
+        customer::where('customerID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'Product Deleted Successfully');
     }
     public function deletePro($id)
     {
@@ -118,25 +119,25 @@ class AdminController extends Controller
             'ProducerCountry'=>$request->country,
             'ProducerID'=>$request->id
         ]);
-        return redirect()->back()->with('success', 'Customer Updated Successfully');
+        return redirect()->back()->with('success', 'Producer Updated Successfully');
     }
 
     public function editCus($id) 
     {
-        $data = Customer::where('CustomerID', '=', $id)->first(); // first: gọi ra bản ghi đầu tiên, có nghĩa là chúng ta sẽ lấy ra productID đầu tiên mà admin muốn edit
+        $data = Customer::where('customerID', '=', $id)->first(); // first: gọi ra bản ghi đầu tiên, có nghĩa là chúng ta sẽ lấy ra productID đầu tiên mà admin muốn edit
         // return view('edit', compact('data'));
         $customers = Customer::get();
-        return view('editCus', compact('data','customers'));
+        return view('admin.editCus', compact('data','customers'));
     }
 
     public function updateCus(Request $request)
     {
         $id = $request->id;
-        Customer::where('CustomerID', '=', $id)->update([
+        Customer::where('customerID', '=', $id)->update([
             'CustomerPass'=>$request->pass,
             'CustomerFullname'=>$request->name,
             'CustomerEmail'=>$request->email,
-            'CustomerID'=>$request->id
+            'customerID'=>$request->id
         ]);
         return redirect()->back()->with('success', 'Customer Updated Successfully');
     }
@@ -155,7 +156,9 @@ class AdminController extends Controller
         $admins = admin::where('adminID', '=', $request->username)->first();
         if($admins) {
             if(Hash::check($request->password, $admins->adminPass)) {
+                $request->session()->put('adminName', $admins->adminFullname);
                 $request->session()->put('loginID', $admins->adminID);
+  
                 return redirect('admin');
             } else {
                 return back()->with('fail', 'Password not matches');
@@ -164,7 +167,13 @@ class AdminController extends Controller
             return back()->with('fail', 'This email is not registered!');
         }        
     }
-
+    public function logoutAdmin()
+    {
+        if(Session()->has('loginID')){
+            session()->pull('loginID');
+            return redirect('loginAdmin');
+        }
+    }
     public function listad()
     {
         $data = admin::get(); 
@@ -197,11 +206,32 @@ class AdminController extends Controller
     }
     public function edit($id) 
     {
+        $admins = admin::get();
+
         $data = admin::where('adminID', '=', $id)->first(); // first: gọi ra bản ghi đầu tiên, có nghĩa là chúng ta sẽ lấy ra productID đầu tiên mà admin muốn edit
         // return view('edit', compact('data'));
-        $admins = admin::get();
         return view('admin.editAd', compact('data','admins'));
+    } 
+    public function updateAd(Request $request)
+    {
+        $id = $request->id;
+        admin::where('adminID', '=', $id)->update([ // gọi hàm update
+            
+            'adminPass'=>$request->pass,
+            'adminFullname'=>$request->name
+            
+        ]);
+        return redirect()->back()->with('success', 'Admin Updated Successfully');
     }
-
-    
+    public function updateAdmin(Request $request)
+    {
+        $id = $request->id;
+        Admin::where('adminID', '=', $id)->update([ // gọi hàm update
+            'adminName'=>$request->name,
+            'adminPass'=>$request->pass,
+            'adminUser'=>$request->user,
+            'adminPhone'=>$request->phone
+        ]);
+        return redirect()->back()->with('success', 'Admin Updated Successfully');
+    }
 }

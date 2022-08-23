@@ -39,7 +39,7 @@
                         </li>
                         @if (Session::has('loginIDcus'))
                             <li class="nav__item">
-                                <a class="nav__link">Wellcome {{Session::get('loginIDcus')}}</a>
+                                <a href="{{url('editCus/'.Session::get('loginIDcus'))}}" class="nav__link">Wellcome {{Session::get('cusname')}}</a>
                             </li>
                             <li class="nav__item">
                                 <a href="{{url('logout')}}" class="nav__link">Logout</a>

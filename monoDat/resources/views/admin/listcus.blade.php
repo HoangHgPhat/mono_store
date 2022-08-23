@@ -20,9 +20,9 @@
                         {{Session::get('success')}}
                     </div>
                     @endif
-                    <div style="margin-right: 10%; float: right;">
+                    <!-- <div style="margin-right: 10%; float: right;">
                         <a href="{{url('addCus')}}" class="btn btn-outline-success">Add New</a>
-                    </div>
+                    </div> -->
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -35,15 +35,15 @@
                         <tbody>
                             @foreach ($data as $row)
                             <tr>
-                                <td>{{$row->customerID}}</td>
+                                <td>{{$row->CustomerID}}</td>
                                 <td>{{$row->CustomerPass}}</td>
                                 <td>{{$row->CustomerFullname}}</td>
                             
                                 <!-- <td>{{$row->productImage1}}</td> -->
                                 <td>{{$row->CustomerEmail}}</td>
                                 <td>
-                                    <a href="{{url('editCus/'.$row->CustomerID)}}" class="btn btn-primary">Edit</a>
-                                    <a href="{{url('deleteCus/'.$row->CustomerID)}}" class="btn btn-danger"
+                                
+                                    <a href="{{url('deleteCus/'.$row->customerID)}}" class="btn btn-danger"
                                         onclick="return confirm('Are you sure?');">Delete</a>
                                     
                                 </td>

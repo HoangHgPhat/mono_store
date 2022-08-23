@@ -38,7 +38,7 @@
                             placeholder="Enter product country">
                         </div> <br>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{url('listpro')}}" class="btn btn-success">Back</a>
+                        <a href="{{url('list-producers')}}" class="btn btn-success">Back</a>
                     </form>
                 </div>
             </div>

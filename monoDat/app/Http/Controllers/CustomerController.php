@@ -16,7 +16,7 @@ class CustomerController extends Controller
     public function registerProcess(Request $request)
     {
         $customer = new Customer();
-        $customer->customerID = $request->username;
+        $customer->CustomerID = $request->username;
         $customer->customerPass = Hash::make($request->password);
         $customer->customerFullname = $request->fullname;
         $customer->customerEmail = $request->email;
@@ -35,10 +35,12 @@ class CustomerController extends Controller
     }
     public function loginProcess(Request $request)
     {
-        $customer = Customer::where('customerID', '=', $request->username)->first();
+        $customer = Customer::where('CustomerID', '=', $request->username)->first();
         if($customer) {
             if(Hash::check($request->password, $customer->CustomerPass)) {
-                $request->session()->put('loginIDcus', $customer->customerID);
+                $request->session()->put('loginIDcus', $customer->CustomerID);
+                $request->session()->put('cusname', $customer->CustomerFullname);
+
                 return redirect('products');
             } else {
                 return back()->with('fail', 'Password not matches');

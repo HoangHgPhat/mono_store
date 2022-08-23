@@ -39,7 +39,7 @@
                         </li>
                         @if (Session::has('loginIDcus'))
                             <li class="nav__item">
-                                <a class="nav__link">Wellcome {{Session::get('loginIDcus')}}</a>
+                                <a href="{{url('editCus/'.Session::get('loginIDcus'))}}" class="nav__link">Wellcome {{Session::get('cusname')}}</a>
                             </li>
                             <li class="nav__item">
                                 <a href="{{url('logout')}}" class="nav__link">Logout</a>
@@ -81,19 +81,21 @@
                 <h2 class="section__title section__title-gradient products__line">
                     Choose <br> Your Product
                 </h2>
-
                 <div class="products__container container grid">
                     @foreach($data as $row)
                     <article class="products__card">
                         <div class="products__content">
-                            <img src="img/products/{{$row->productImage1}}" alt="" class="products__img" style="width: 120px;">
-    
-                            <h3 class="products__title">{{$row->productName}}</h3>
-                            <span class="products__price">$249</span>
-    
-                            <button class="button button--flex products__button">
-                                <i class="ri-shopping-bag-line button__icon"></i>
-                            </button>
+                            <a href="{{url('viewPro/'.$row->productID)}}">
+                                <img src="img/products/{{$row->productImage1}}" alt="" class="products__img" style="width: 120px;">
+        
+                                <h3 class="products__title">{{$row->productName}}</h3>
+                            </a>
+                                <span class="products__price">$249</span>
+        
+                                <button class="button button--flex products__button">
+                                    <i class="ri-shopping-bag-line button__icon"></i>
+                                </button>
+                           
                         </div>
                     </article>
                     @endforeach
@@ -168,7 +170,7 @@
                 </div>
             </div>
 
-  <p class="footer__copyright"><i>Copy right</i> Hiếu đẹp trai <br> 2021</p>
+  <p class="footer__copyright"><i>Copy right</i>Mono TEAM<br> 2021</p>
 </footer>
     <!--=============== SCROLL UP ===============-->
     <a href="#" class="scrollup" id="scroll-up">

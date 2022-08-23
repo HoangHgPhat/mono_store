@@ -61,4 +61,11 @@ class ProductController extends Controller
         Product::where('productID', '=', $id)->delete();
         return redirect()->back()->with('success', 'Product Deleted Successfully');
     }
+    public function viewPro()
+    {
+        $data = Product::get();
+        return view('0905b.viewPro', compact('data'));
+    }
 }
+
+
